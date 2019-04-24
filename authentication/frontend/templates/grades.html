@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block content%}
+    <div class="content-section">
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="order-bottom mb-4">
+                    Check Availability
+                </legend>
+                <div class="form=group">
+                    {{ form.bangla.label(class='form-control-label') }}
+                    {% if form.bangla.errors %}
+                        {{ form.bangla(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.bangla.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.bangla(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.english.label(class='form-control-label') }}
+                    {% if form.english.errors %}
+                        {{ form.english(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.english.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.english(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.math.label(class='form-control-label') }}
+                    {% if form.math.errors %}
+                        {{ form.math(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.math.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.math(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.physics.label(class='form-control-label') }}
+                    {% if form.physics.errors %}
+                        {{ form.physics(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.physics.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.physics(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.chemistry.label(class='form-control-label') }}
+                    {% if form.chemistry.errors %}
+                        {{ form.chemistry(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.chemistry.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.chemistry(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.biology.label(class='form-control-label') }}
+                    {% if form.biology.errors %}
+                        {{ form.biology(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.biology.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.biology(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.ssc.label(class='form-control-label') }}
+                    {% if form.ssc.errors %}
+                        {{ form.ssc(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.ssc.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ssc(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+
+                <div class="form=group">
+                    {{ form.hsc.label(class='form-control-label') }}
+                    {% if form.hsc.errors %}
+                        {{ form.hsc(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                        {% for error in form.hsc.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.hsc(class='form-control form-control-lg') }}
+                    {% endif %}
+                </div>
+            </fieldset>
+                <div class="form=group">
+                    {{ form.submit(class='btn btn-outline-info') }}
+                </div>
+
+        </form>
+    </div>
+
+{% endblock content %}
