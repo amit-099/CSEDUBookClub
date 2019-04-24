@@ -1,5 +1,5 @@
 body {
-  background: #fa5e50;
+  background: #4CAF50;
   color: #ffffff;
   margin-top: 5rem;
 }
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 .content-section {
   background: #6e302b;
   padding: 10px 20px;
-  border: 1px solid #dd2302;
+  border: 1px solid #4CAF50;
   border-radius: 3px;
   margin-bottom: 20px;
   color: #ffffff;

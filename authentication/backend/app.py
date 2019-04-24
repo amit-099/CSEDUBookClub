@@ -25,7 +25,7 @@ config = {
     "databaseURL": "https://searchify-e7016.firebaseio.com",
     "projectId": "searchify-e7016",
     "storageBucket": "searchify-e7016.appspot.com",
-    "serviceAccount": "/home/amit/PycharmProjects/searchify-e7016-firebase-adminsdk-7g8z4-0bbb2c89df.json",
+    "serviceAccount": "/home/amit/PycharmProjects/CSEDUBookClub/searchify-e7016-firebase-adminsdk-7g8z4-0bbb2c89df.json",
     "messagingSenderId": "934668298736"
 }
 firebase = pyrebase.initialize_app(config)
