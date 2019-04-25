@@ -44,3 +44,4 @@ class AddBook(FlaskForm):
     writer = StringField('Writer\'s Name', validators=[DataRequired()])
     category = StringField('Category', validators=[DataRequired()])
     availability = StringField('Availability', validators=[DataRequired()])
+    submit = SubmitField('Add')

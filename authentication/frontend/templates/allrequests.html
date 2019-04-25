@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>All Available Books</h2>
+    <div class="list-group">
+
+
+        {% for i in range(length) %}
+
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">{{ book_name_list[i] }}</h4>
+                <p class="list-group-item-text">{{ book_writer_list[i] }}</p>
+                <p class="list-group-item-text">{{ from_list[i] }}</p>
+                <button onclick="allowRequest('{{ book_id_list[i] }}', '{{ book_owner_list[i] }}', '{{ currentuser }}', '{{ book_name_list[i] }}',
+                        '{{ book_writer_list[i] }}', '{{ book_avail_list[i] }}', '{{ book_cat_list[i] }}', '{{ from_list[i] }}')" id="allow_btn" class="btn btn-success">Allow</button>
+                <button onclick="rejectRequest('{{ book_id_list[i] }}', '{{ book_owner_list[i] }}', '{{ currentuser }}', '{{ book_name_list[i] }}',
+                        '{{ book_writer_list[i] }}', '{{ book_avail_list[i] }}', '{{ book_cat_list[i] }}')" id="reject_btn" class="btn btn-danger">Reject</button>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+<script>
+
+    function allowRequest(bookID, bookOwner, currentuser, bookName, bookWriter, bookAvail, bookCat, cameFrom) {
+        console.log(currentuser);
+        $.ajax({
+            url: '/saveallowed',
+            data: {
+                'bookID': bookID,
+                'bookOwner': bookOwner,
+                'currentuser': currentuser,
+                'bookName': bookName,
+                'bookWriter': bookWriter,
+                'bookAvail': bookAvail,
+                'bookCat': bookCat,
+                'cameFrom': cameFrom
+            },
+            dataType: 'json',
+            type: 'POST',
+            success: function (response) {
+                document.getElementById("req_btn").innerHTML = "Allowed";
+            },
+            error: function (error) {
+                console.log('Error in receiving');
+            }
+        });
+
+    }
+
+    function rejectRequest(bookID, bookOwner, currentuser, bookName, bookWriter, bookAvail, bookCat) {
+        console.log(currentuser);
+        $.ajax({
+            url: '/rejected',
+            data: {
+                'bookID': bookID,
+                'bookOwner': bookOwner,
+                'currentuser': currentuser,
+                'bookName': bookName,
+                'bookWriter': bookWriter,
+                'bookAvail': bookAvail,
+                'bookCat': bookCat
+            },
+            dataType: 'json',
+            type: 'POST',
+            success: function (response) {
+                document.getElementById("reject_btn").innerHTML = "Rejected";
+            },
+            error: function (error) {
+                console.log('Error in receiving');
+            }
+        });
+    }
+
+</script>
+
+
+</body>
+</html>

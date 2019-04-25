@@ -35,7 +35,7 @@
 
 <script>
 
-    function requestBook(bookID, bookOwner, currentuser, bookName, bookWritter, bookAvail, bookCat) {
+    function requestBook(bookID, bookOwner, currentuser, bookName, bookWriter, bookAvail, bookCat) {
         console.log(currentuser);
         $.ajax({
             url: '/savedata',
@@ -44,7 +44,7 @@
                 'bookOwner': bookOwner,
                 'currentuser': currentuser,
                 'bookName': bookName,
-                'bookWritter': bookWritter,
+                'bookWriter': bookWriter,
                 'bookAvail': bookAvail,
                 'bookCat': bookCat
             },

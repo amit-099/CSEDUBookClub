@@ -48,6 +48,10 @@
     <div align="center" style="display: inline-block">
         <a href="{{ url_for('allbooks', currentuser=currentuser) }}" class="btn btn-success" id="books" style='visibility:visible'
            onclick="previoussummary(this, '{{ sessionID }}')">All Books</a>
+
+        <a href="{{ url_for('addbook', currentuser=currentuser) }}" class="btn btn-success" id="add" style='visibility:visible'>Add Books</a>
+
+        <a href="{{ url_for('requests', currentuser=currentuser) }}" class="btn btn-success" id="request" style='visibility:visible'>Book Requests</a>
     </div>
 
 </div>

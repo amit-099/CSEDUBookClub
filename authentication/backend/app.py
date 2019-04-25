@@ -1,7 +1,7 @@
 import os
 import random
 
-from authentication.backend.forms import RegistrationForm, LoginForm, Reset, Grades
+from authentication.backend.forms import RegistrationForm, LoginForm, Reset, Grades, AddBook
 
 try:
     from urllib.request import Request, urlopen, URLError
@@ -111,15 +111,162 @@ def allbooks(currentuser):
                            book_cat_list=book_cat_list)
 
 
+@app.route('/requests/<currentuser>')
+def requests(currentuser):
+    print("CCCCCCCCCCCCCCCCCCCCCC        ", currentuser)
+
+    book_name_list = []
+    book_writer_list = []
+    book_id_list = []
+    book_owner_list = []
+    book_avail_list = []
+    book_cat_list = []
+    from_list = []
+
+    all_requests = db.child("Users").child("Owners").child("UID").child(currentuser).child("receiverequest").get()
+    #all_requests = dict(all_requests)
+    print(type(all_requests))
+
+    # if "receiverequest" in all_requests:
+    #     print("yessssssssssssss")
+    for aRequest in all_requests.each():
+        print("AAAAAAAAAA   ", aRequest.val())
+        print(list(aRequest.val()))
+        request_condition = list(aRequest.val())
+        for val in request_condition:
+            if val != 'from':
+                print(val)
+                p = aRequest.val()
+                q = p[val]
+                print(q)
+                book_name_list.append(q.get('name'))
+                book_cat_list.append(q.get('category'))
+                book_avail_list.append(q.get('availability'))
+                book_id_list.append(q.get('bookid'))
+                book_owner_list.append(q.get('owner'))
+                book_writer_list.append(q.get('writer'))
+            else:
+                p = aRequest.val()
+                q = p[val]
+                from_list.append(q)
+
+
+
+
+
+
+        # for key, val in request_condition:
+        #     if key != 'from':
+        #         req_entry = val
+        #         book_name_list.append(req_entry.get('name'))
+        #         book_cat_list.append(req_entry.get('category'))
+        #         book_avail_list.append(req_entry.get('availability'))
+        #         book_id_list.append(req_entry.get('bookid'))
+        #         book_owner_list.append(req_entry.get('owner'))
+        #         book_writer_list.append(req_entry.get('writer'))
+        #     else:
+        #         from_list.append(val)
+
+    length = len(book_name_list)
+    return render_template("allrequests.html", auth=auth, book_name_list=book_name_list, book_writer_list=book_writer_list,
+                           length=length, book_id_list=book_id_list, book_owner_list=book_owner_list,
+                           currentuser=currentuser, book_avail_list=book_avail_list,book_cat_list=book_cat_list, from_list=from_list)
+
+
+
+
+@app.route('/addbook/<currentuser>', methods=['GET', 'POST'])
+def addbook(currentuser):
+    form = AddBook()
+
+    if form.validate_on_submit():
+        book_name = form.name.data
+        book_writer = form.writer.data
+        book_category = form.category.data
+        book_availability = form.availability.data
+
+        user_name = db.child("Users").child("Owners").child("UID").child(currentuser).child("username").get().val()
+        book_id = user_name + book_name
+        print("Booooooooooooooooooooooooookkkkkkkkkkkkkkkidddddddddddd     ", book_id)
+        book_owner = user_name
+
+        aBook = {
+            'availability': book_availability,
+            'bookid': book_id,
+            'category': book_category,
+            'name': book_name,
+            'owner': book_owner,
+            'writer': book_writer
+        }
+
+        db.child("Books").child(book_id).set(aBook)
+        db.child("Users").child("Owners").child("UID").child(currentuser).child("books").child(book_id).set(aBook)
+        db.child("Users").child("Owners").child("username").child(user_name).child("books").child(book_id).set(aBook)
+
+        return redirect(url_for('home', currentuser=currentuser))
+    return render_template('addbook.html', title='Register', form=form, auth=auth)
+
+
+@app.route('/rejected', methods=['POST'])
+def rejected():
+    book_id = request.form['bookID']
+    book_owner = request.form['bookOwner']
+    currentuser = request.form['currentuser']
+    book_name = request.form['bookName']
+    book_writer = request.form['bookWriter']
+    book_avail = request.form['bookAvail']
+    book_cat = request.form['bookCat']
+
+    user_name = db.child("Users").child("Owners").child("UID").child(currentuser).child("username").get().val()
+    db.child("Users").child("Owners").child("UID").child(currentuser).child("receiverequest").child(book_id).remove()
+    db.child("Users").child("Owners").child("username").child(user_name).child("receiverequest").child(book_id).remove()
+
+    return json.dumps({'test': 'aaaaaaaaa'})
+
+
+@app.route('/saveallowed', methods=['POST'])
+def saveallowed():
+    book_id = request.form['bookID']
+    book_owner = request.form['bookOwner']
+    currentuser = request.form['currentuser']
+    book_name = request.form['bookName']
+    book_writer = request.form['bookWriter']
+    book_avail = request.form['bookAvail']
+    book_cat = request.form['bookCat']
+    came_from = request.form['cameFrom']
+
+    aBook = {
+        'availability': book_avail,
+        'bookid': book_id,
+        'category': book_cat,
+        'name': book_name,
+        'owner': book_owner,
+        'writer': book_writer
+    }
+
+    user_name = db.child("Users").child("Owners").child("UID").child(currentuser).child("username").get().val()
+    #uid_owner = db.child("Users").child("Owners").child("username").child(book_owner).child("UID").get().val()
+
+    db.child("Users").child("Owners").child("UID").child(currentuser).child("allowed").child(book_id).set(aBook)
+    db.child("Users").child("Owners").child("username").child(user_name).child("allowed").child(book_id).set(aBook)
+
+    db.child("Users").child("Owners").child("username").child(came_from).child("granted").child(book_id).set(aBook)
+    from_uid = db.child("Users").child("Owners").child("username").child(came_from).child("UID").get().val()
+    db.child("Users").child("Owners").child("UID").child(from_uid).child("granted").child(book_id).set(aBook)
+
+    return json.dumps({'test': 'aaaaaaaaa'})
+
+
 @app.route('/savedata', methods=['POST'])
 def savedata():
     book_id = request.form['bookID']
     book_owner = request.form['bookOwner']
     currentuser = request.form['currentuser']
     book_name = request.form['bookName']
-    book_writter = request.form['bookWritter']
+    book_writer = request.form['bookWriter']
     book_avail = request.form['bookAvail']
     book_cat = request.form['bookCat']
+
 
 
     print("aaaaaaaaaaaaaaaaaaaaaaaaaa                     ", currentuser)
@@ -131,7 +278,7 @@ def savedata():
         'category': book_cat,
         'name': book_name,
         'owner': book_owner,
-        'writter': book_writter
+        'writer': book_writer
     }
 
     ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -157,9 +304,6 @@ def savedata():
     db.child("Users").child("Owners").child("UID").child(uid_owner).child("receiverequest").child(rand_id).child("from").set(user_name)
 
     return json.dumps({'test': 'aaaaaaaaa'})
-
-
-
 
 
 @app.route('/about')
