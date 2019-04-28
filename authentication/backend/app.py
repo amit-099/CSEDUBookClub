@@ -25,7 +25,7 @@ config = {
     "databaseURL": "https://searchify-e7016.firebaseio.com",
     "projectId": "searchify-e7016",
     "storageBucket": "searchify-e7016.appspot.com",
-    "serviceAccount": "/home/amit/PycharmProjects/CSEDUBookClub/searchify-e7016-firebase-adminsdk-7g8z4-0bbb2c89df.json",
+    "serviceAccount": "/home/moumita/PycharmProjects/CSEDUBookClub/searchify-e7016-firebase-adminsdk-7g8z4-0bbb2c89df.json",
     "messagingSenderId": "934668298736"
 }
 firebase = pyrebase.initialize_app(config)
@@ -204,7 +204,7 @@ def addbook(currentuser):
         db.child("Users").child("Owners").child("username").child(user_name).child("books").child(book_id).set(aBook)
 
         return redirect(url_for('home', currentuser=currentuser))
-    return render_template('addbook.html', title='Register', form=form, auth=auth)
+    return render_template('addbook.html', title='Register', form=form, auth=auth, currentuser=currentuser)
 
 
 @app.route('/rejected', methods=['POST'])

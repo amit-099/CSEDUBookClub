@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>CSEDU Book Club</title>
+<title>Book Club</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -32,8 +37,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">START PAGE</h1>
-  <p class="w3-xlarge">Created by Koushik, Mob & Rahat</p>
+  <h1 class="w3-margin w3-jumbo">Book Club</h1>
+  <p class="w3-xlarge">Share.. Knowledge</p>
     {% if auth.current_user%}
           <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{{ url_for('home') }}">Get Started</a>
     {% else %}
@@ -41,28 +46,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     {% endif %}
 </header>
 
-<!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-twothird">
-      <h1>Admission Assistant</h1>
-      <h5 class="w3-padding-32">This is an Admission based website where you can check the availability of Universities by evaluating you SSC and HSC grades</h5>
-
-      <p class="w3-text-grey">Here, you can access the notice boards, give MCQ exams and check whether you are capable of giving admission exams of different universities. Simply issue your SSC and HSC grades and inspect the result wher it shows the availability of universities</p>
-    </div>
-
-    <div class="w3-third w3-center">
-      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
-</div>
+{#<!-- First Grid -->#}
+{#<div class="w3-row-padding w3-padding-64 w3-container">#}
+{#  <div class="w3-content">#}
+{#    <div class="w3-twothird">#}
+{#      <h1>Admission Assistant</h1>#}
+{#      <h5 class="w3-padding-32">This is an Admission based website where you can check the availability of Universities by evaluating you SSC and HSC grades</h5>#}
+{##}
+{#      <p class="w3-text-grey">Here, you can access the notice boards, give MCQ exams and check whether you are capable of giving admission exams of different universities. Simply issue your SSC and HSC grades and inspect the result wher it shows the availability of universities</p>#}
+{#    </div>#}
+{##}
+{#    <div class="w3-third w3-center">#}
+{#      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{##}
+{##}
+{##}
+{#<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">#}
+{#    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>#}
+{#</div>#}
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
@@ -74,7 +79,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
  </div>
- <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Koushik, Mob & Rahat</a></p>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Moumita Choudhury and Amit Sarker</a></p>
 </footer>
 
 <script>

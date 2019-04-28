@@ -1,5 +1,56 @@
-{% extends "layout.html" %}
-{% block content%}
+{#{% extends "layout.html" %}#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Book Club</title>
+  <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Book Club</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{url_for('home', currentuser=currentuser) }}">Home</a></li>
+        <li><a href="{{ url_for('allbooks', currentuser=currentuser)}}">All Books</a></li>
+        <li><a href="{{ url_for('addbook', currentuser=currentuser)}}">Add Book</a></li>
+        <li><a href="{{ url_for('requests', currentuser=currentuser)}}">Book Requests</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
     <div class="content-section">
         <form method="post" action="">
             {{ form.hidden_tag() }}
@@ -76,5 +127,7 @@
 {#        <small class="text-muted">#}
 {#            Already a member? <a class="ml-2" href="{{ url_for("login") }}">Login</a>#}
 {#        </small>#}
-{#    </div>#}
-{% endblock content %}
+    </div>
+
+    </body>
+</html>

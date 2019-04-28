@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Book Club</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>List Group With Custom Content</h2>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Book Club</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{url_for('home', currentuser=currentuser) }}">Home</a></li>
+        <li><a href="{{ url_for('allbooks', currentuser=currentuser)}}">All Books</a></li>
+        <li><a href="{{ url_for('addbook', currentuser=currentuser)}}">Add Book</a></li>
+        <li><a href="{{ url_for('requests', currentuser=currentuser)}}">Book Requests</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="my">
+    <div class="container">
+  <h2>Channel List</h2>
   <div class="list-group">
 
 
@@ -27,35 +66,14 @@
   </div>
 </div>
 
+</div>
 
-<div align="center" class="myclass" style="display: inline-block;">
-{#    <h2 align="center">Select Complexity Level</h2>#}
-{#    <div style="display: inline-block">#}
-{#        <a href="#" class="btn btn-success" id="easy" style='visibility:visible'#}
-{#           onclick="easy(this, '{{ sessionID }}')">Easy</a>#}
-{#    </div>#}
-{#    <div style="display: inline-block">#}
-{#        <a href="#" class="btn btn-success" id="medium" style='visibility:visible'#}
-{#           onclick="medium(this, '{{ sessionID }}')">Medium</a>#}
-{#    </div>#}
-{#    <div style="display: inline-block">#}
-{#        <a href="#" class="btn btn-success" id="hard" style='visibility:visible'#}
-{#           onclick="hard(this, '{{ sessionID }}')">Hard</a>#}
-{#    </div>#}
-{##}
-{#    <hr>#}
-
-    <div align="center" style="display: inline-block">
-        <a href="{{ url_for('allbooks', currentuser=currentuser) }}" class="btn btn-success" id="books" style='visibility:visible'
-           onclick="previoussummary(this, '{{ sessionID }}')">All Books</a>
-
-        <a href="{{ url_for('addbook', currentuser=currentuser) }}" class="btn btn-success" id="add" style='visibility:visible'>Add Books</a>
-
-        <a href="{{ url_for('requests', currentuser=currentuser) }}" class="btn btn-success" id="request" style='visibility:visible'>Book Requests</a>
-    </div>
 
 </div>
 
+{#<footer class="container-fluid text-center">#}
+{#  <p>Footer Text</p>#}
+{#</footer>#}
 
 </body>
 </html>
