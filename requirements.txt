@@ -3,7 +3,6 @@ flask-login==0.4.1
 flask-wtf==0.14.2
 flask-bootstrap==3.3.7.1
 
-werkzeug==0.14.1
 flask-oauth==0.12
 wtforms==2.2.1
 flask-register==0.1.0
