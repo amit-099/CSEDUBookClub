@@ -6,7 +6,6 @@ flask-bootstrap==3.3.7.1
 flask-oauth==0.12
 wtforms==2.2.1
 flask-register==0.1.0
-pillow=5.3.0
 
 appdirs = 1.4.3
 Flask-Mail == 0.9.1
